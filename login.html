@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: 'Inter', Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input {
+            padding: 12px;
+            font-size: 18px;
+            width: 250px;
+            margin-bottom: 20px;
+            border-radius: 8px; /* Slightly more rounded */
+            border: 2px solid #333;
+            background-color: #222;
+            color: white;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #00bcd4; /* A slight focus color */
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #00bcd4; /* Teal color for a modern look */
+            color: #111;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        button:hover {
+            background-color: #0097a7;
+            transform: translateY(-1px);
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff5722; /* Warning color */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Restricted Access Portal</h1>
+    <p>Authentication Required.</p>
+
+    <!-- Input box to guess the password -->
+    <input type="text" id="passwordInput" placeholder="Enter password" />
+    <button onclick="checkPassword()">Access</button>
+
+    <p id="message"></p>
+
+    <script>
+        let incorrectAttempts = 0;
+        const maxAttempts = 15;
+        // URL for the Bad Time Simulator (Sans Fight)
+        const sansGameUrl = "https://jcw87.github.io/c2-sans-fight/";
+        // URL for the "You are an idiot!" prank after 15 attempts (standard Rickroll is used for safety)
+        const idiotUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+
+        /**
+         * Checks the user's password guess and redirects based on the input.
+         */
+        function checkPassword() {
+            const inputElement = document.getElementById("passwordInput");
+            const messageElement = document.getElementById("message");
+            // Convert input to lower case and trim spaces for case-insensitive checking
+            const userGuess = inputElement.value.toLowerCase().trim();
+            
+            // Clear input field after checking
+            inputElement.value = '';
+
+            if (userGuess === "sans") {
+                // Case 1: If "sans" is typed, redirect to the Bad Time Simulator.
+                messageElement.style.color = '#4CAF50'; // Green for success
+                messageElement.innerText = "Password Accepted. Entering Bad Time Sequence...";
+                setTimeout(() => {
+                    window.location.href = sansGameUrl;
+                }, 1000);
+                return;
+
+            } else if (userGuess === "gaming") {
+                // Case 2: If "gaming" is typed, redirect to the user's index page.
+                messageElement.style.color = '#4CAF50';
+                messageElement.innerText = "Password Accepted. Accessing Main Index...";
+                setTimeout(() => {
+                    window.location.href = "index.html"; // The target index file
+                }, 1000);
+                return;
+
+            } else {
+                // Case 3: Incorrect password
+                incorrectAttempts++;
+
+                if (incorrectAttempts >= maxAttempts) {
+                    // Fail Condition: Redirect after 15 wrong guesses
+                    messageElement.style.color = '#F44336'; // Red for severe warning
+                    messageElement.innerText = "ACCESS DENIED. Maximum attempts exceeded. Initiating system override...";
+                    setTimeout(() => {
+                        window.location.href = idiotUrl;
+                    }, 2000); // Give a moment for the user to read the message
+                    
+                } else {
+                    // Update attempts left
+                    const attemptsLeft = maxAttempts - incorrectAttempts;
+                    messageElement.style.color = '#ff5722';
+                    messageElement.innerText = `Incorrect Password. Access denied. Attempts remaining: ${attemptsLeft}`;
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
