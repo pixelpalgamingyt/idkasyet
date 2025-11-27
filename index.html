@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idk as yet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="startScreen">
+        <h1>Idk as yet</h1>
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="menuScreen">
+        <h2>Menu</h2>
+        <button onclick="resumeGame()">Resume Game</button>
+        <button onclick="restartGame()">Restart Game</button>
+        <button onclick="showControls()">Controls</button>
+        <button onclick="goToMainMenu()">Main Menu</button>
+        <div id="controlsInfo" style="display: none; margin-top: 20px;">
+            <p>Movement: W, A, S, D</p>
+            <p>Shoot: Mouse Click</p>
+            <p>Pause: Escape</p>
+            <p>Abilities:</p>
+            <div id="abilityControls"></div>
+            <button onclick="hideControls()">Back</button>
+        </div>
+    </div>
+
+    <div id="gameWrapper">
+        <div id="centerBarrier"></div>
+
+        <div id="stats">
+            <span>HP: <span id="hp">100</span></span>
+            <span>EXP: <span id="exp">0</span></span>
+            <span>Level: <span id="level">1</span></span>
+        </div>
+
+        <canvas id="gameCanvas" width="1000" height="750"></canvas>
+        <div id="cooldownTimer"></div>
+        <div id="cardContainer"></div>
+
+        <div id="gameOverScreen">
+            <h1>Game Over</h1>
+            <button onclick="restartGame()">Restart</button>
+            <button onclick="goToMainMenu()">Main Menu</button>
+        </div>
+    </div>
+
+    <audio id="expSound" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg" preload="auto"></audio>
+    <audio id="powerUpSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg" preload="auto"></audio>
+    <audio id="shootSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+    <audio id="backgroundMusic" src="C:\Users\esouza1710.HWDSB\OneDrive - Hamilton Wentworth District School Board\Documents\shooter game2.html\Perpetuity.mp3.mpeg" loop="true" preload="auto"></audio>
+    <audio id="gameOverMusic" src="C:\Users\esouza1710.HWDSB\OneDrive - Hamilton Wentworth District School Board\Documents\shooter game2.html\undertale-damage-made-with-Voicemod.mp3" preload="auto"></audio>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
